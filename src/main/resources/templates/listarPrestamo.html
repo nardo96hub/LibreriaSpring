@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+
+</head>
+  <body>
+    <section class="container m-5">
+        <h3 style="text-align:center"> Lista de Prestamos Activos</h3>
+        <table class="table table-bordered">
+
+            <thead class="bg-primary text-warning">
+
+                <tr>
+                    <th scope="col">id Prestamo </th>
+                    <th scope="col">Fecha de Prestamo</th>
+                    <th scope="col">Fecha de Devolocion</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Libro</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+<!--
+                    <th scope="col" >id Autor</th>
+                    <th scope="col">Nombre Autor</th>
+                    <th scope="col">Estado Autor</th>
+                    <th scope="col">id Editorial</th>
+                    <th scope="col">Nombre Editorial</th>
+                    <th scope="col">Estado Editorial</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+
+                    -->
+
+                </tr>
+            </thead>
+            <tbody th:each="prestamo : ${listarprestamo}" class="tbody-secondary">
+                <tr class="bg-secondary text-light">
+                    <th scope="row" th:text="${prestamo.id}"></th>
+                    <td th:text="${prestamo.fechaPrestamo}"></td>
+                    <td th:text="${prestamo.fechaDevolucion}"></td>
+                    <td >
+                        <span th:if="${prestamo.alta}"><i class="fas fa-check" style="color:green"></i> </span>
+                        <span th:unless="${prestamo.alta}"><i class="fas fa-times" style="color: red;"></i></span>
+
+                    </td>
+                   <td th:text="${prestamo.libro}"></td>
+                    <td th:text="${prestamo.cliente}"></td> 
+                   <!-- <td th:text="${libro.ejemplaresRestantes}"></td>
+
+
+                    <td >
+                        <span th:if="${libro.alta}"><i class="fas fa-check" style="color:green"></i> </span>
+                        <span th:unless="${libro.alta}"><i class="fas fa-times" style="color: red;"></i></span>
+                    </td>
+
+
+                    <td th:text="${libro.autor.id}" ></td>
+                    <td th:text="${libro.autor.nombre}"></td>
+                    <td >
+                        <span th:if="${libro.autor.alta}"  ><i class="fa fa-circle "style="color:green"></i> </span>
+						<span th:unless="${libro.autor.alta}" ><i class="fa fa-circle" style="color:red"></i></span>
+
+                    </td>
+                    <td th:text="${libro.editorial.id}"> </td>
+                    <td th:text="${libro.editorial.nombre}" ></td>
+                    <td >
+                        <span th:if="${libro.editorial.alta}" ><i class="fa fa-circle "style="color:green"></i> </span>
+						<span th:unless="${libro.editorial.alta}" ><i class="fa fa-circle" style="color:red"></i></span>
+                    </td>
+
+-->
+
+                    <td>
+
+                        <a th:href="@{/prestamo/editar/__${prestamo.id}__}"><i class="far fa-edit" style="color: gold;"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/prestamo/eliminar/__${prestamo.id}__}"><i class="fas fa-trash" style="color: red;">
+                            </i></a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </section>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+
+            </div>
+        </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
