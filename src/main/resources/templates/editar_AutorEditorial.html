@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-      <form th:action="@{/autor/editar/__${autor.id}__}" method="POST">
+      <form th:action="@{/libreria/autor/editar/__${autor.id}__}" method="POST">
         <div class="row">
             <div class="col">
                 <input type="text" class="form-control" name="nombre"
@@ -22,7 +22,7 @@
       <section class="py-5 text-center container">
           <div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
-					<a th:href="@{/autor/lista}" class="btn btn-primary my-2">Volver</a>
+					<a th:href="@{/libreria/autor/lista}" class="btn btn-primary my-2">Volver</a>
 					
 				</div>
 			</div>

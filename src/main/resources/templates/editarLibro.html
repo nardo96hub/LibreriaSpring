@@ -12,7 +12,7 @@
   <body class="container">
     <br><br>
     <h3 class="text-center">Editar Libro</h3><br><br>
-    <form th:action="@{/libro/editar/__${libro.id}__}" method="POST">
+    <form th:action="@{/libreria/libro/editar/__${libro.id}__}" method="POST">
 
         <fieldset class="border border-danger">
             
@@ -73,7 +73,7 @@
     </form>
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto text-center">
-            <a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+            <a th:href="@{/libreria/}" class="btn btn-primary my-2">Volver</a>
 
         </div>
     </div>

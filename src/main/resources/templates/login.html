@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Title</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	<link rel="stylesheet" href="../static/css/index.css">
+
+	<style>
+		body {
+			background: url(../img/background.jpg) no-repeat center center fixed;
+			background-size: cover;
+		}
+
+		.main-section {
+			margin: 0 auto;
+			margin-top: 25%;
+			padding: 0;
+		}
+
+		.modal-content {
+			background-color: #3b4652;
+			opacity: .85;
+			padding: 0 20px;
+			box-shadow: 0px 0px 3px #848484;
+		}
+
+		.user-img {
+			margin-top: -50px;
+			margin-bottom: 35px;
+		}
+
+		.user-img img {
+			width: 100xp;
+			height: 100px;
+			box-shadow: 0px 0px 3px #848484;
+			border-radius: 50%;
+		}
+
+		.form-group input {
+			height: 42px;
+			font-size: 18px;
+			border: 0;
+			padding-left: 54px;
+			border-radius: 5px;
+		}
+
+		.form-group::before {
+			font-family: "Font Awesome\ 5 Free";
+			position: absolute;
+			left: 28px;
+			font-size: 22px;
+			padding-top: 4px;
+		}
+
+		.form-group#user-group::before {
+			content: "\f007";
+		}
+
+		.form-group#contrasena-group::before {
+			content: "\f023";
+		}
+
+		button {
+			width: 60%;
+			margin: 5px 0 25px;
+		}
+
+		.forgot {
+			padding: 5px 0;
+		}
+
+		.forgot a {
+			color: white;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="modal-dialog text-center">
+		<div class="col-sm-8 main-section">
+			<div class="modal-content">
+				<div class="col-12 user-img">
+					<img src="../static/img/user.png" th:src="@{../img/user.png}" />
+				</div>
+				<form class="col-12" action="/logincheck" method="post">
+					<div th:if="${error}!=null" class="card text-white bg-danger mb-3">
+						<div class="card-body">
+							<h5 class="card-title">Error</h5>
+							<p class="card-text" th:text="${error}"></p>
+						</div>
+					</div>
+
+
+					<div class="form-group" id="user-group">
+						<input type="text" class="form-control" placeholder="Nombre de usuario" name="user" />
+					</div>
+					<div class="form-group" id="contrasena-group">
+						<input type="password" class="form-control" placeholder="Contrasena" name="pass" />
+					</div>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Entrar </button>
+				</form>
+				<div class="col-12 forgot">
+
+
+					<a th:href="@{/usuario/registrar}" class="btn btn-info my-2">Registrar</a>
+				</div>
+
+				<!--
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+		            Invalid username and password.
+		        </div>
+		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+		            You have been logged out.
+		        </div>-->
+			</div>
+		</div>
+	</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,8 +1,10 @@
+
 package egg.web.libreria.controladores;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +16,9 @@ import egg.web.libreria.servicios.*;
 
 
 @Controller
-@RequestMapping("/")//Primera vista index es la posicion de partida
-public class PrincipalControlador {
+@PreAuthorize("isAuthenticated()")
+@RequestMapping("/libreria")//Primera vista index es la posicion de partida
+public class LibreriaControlador {
 	
 	@Autowired
 	private ServicioEditorial serEdi;

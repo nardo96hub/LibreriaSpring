@@ -3,6 +3,7 @@ package egg.web.libreria.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,16 +16,19 @@ import egg.web.libreria.entidades.Libro;
 import egg.web.libreria.servicios.ServicioLibro;
 
 @Controller
-@RequestMapping("/libro")
+@PreAuthorize("isAuthenticated()")
+@RequestMapping("/libreria/libro")
 public class LibroControlador {
 	@Autowired
 	private ServicioLibro serLib;
 	
 	//Controladores carga
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/cargalibro")
 	public String libro() {
 		return "crearLibro";
 	}
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/cargalibro")
 	public String libro(@RequestParam Long isbn,@RequestParam String titulo,@RequestParam String nombreAutor
 	 ,@RequestParam String nombreEditorial,@RequestParam Integer anio,@RequestParam Integer ejemplares,@RequestParam Integer ejemplaresPrestados,@RequestParam Integer ejemplaresRestantes
@@ -36,10 +40,11 @@ public class LibroControlador {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/libro/lista";
+		return "redirect:/libreria/libro/lista";
 	}
 	
 	//Controlador para listar Libros
+	
 	@GetMapping("/lista")
 	public String listaLibro(ModelMap mod) {
 		List<Libro> ll=serLib.listarActivos();
@@ -49,6 +54,7 @@ public class LibroControlador {
 	}
 	
 	//Controlador para eliminar libro
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable String id) {
 		try {
@@ -57,11 +63,11 @@ public class LibroControlador {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return "redirect:/";
+			return "redirect:/libreria";
 			
 		}
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/editar/{id}")
 	public String editar(ModelMap mod,@PathVariable String id) {
 		
@@ -72,12 +78,12 @@ public class LibroControlador {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "redirect:/";
+			return "redirect:/libreria";
 		}
 		
 	
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/editar/{id}")
 	public String editar(@PathVariable String id,@RequestParam Long isbn,@RequestParam String titulo,@RequestParam String nombreAutor
 			 ,@RequestParam String nombreEditorial,@RequestParam Integer anio,@RequestParam Integer ejemplares,@RequestParam Integer ejemplaresPrestados,@RequestParam Integer ejemplaresRestantes
@@ -85,7 +91,7 @@ public class LibroControlador {
 	{
 		try {
 			serLib.editarLibro(id, isbn, titulo, nombreAutor, nombreEditorial, anio, ejemplares, ejemplaresPrestados, ejemplaresRestantes);
-			return "redirect:/libro/lista";
+			return "redirect:/libreria/libro/lista";
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

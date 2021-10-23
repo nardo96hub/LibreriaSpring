@@ -11,6 +11,16 @@
     <title>Lista</title>
 </head>
 <body>
+	<!--<div class="container">
+		<div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role"alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+		</div>
+		<div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role"alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> </button>
+		</div>
+	</div>
+	
+-->
 	<section class="container m-5">
 		<h3 style="text-align:center">							Lista de Autores Activos</h3>
         <table class="table table-dark">
@@ -21,8 +31,10 @@
 					<th scope="col">id</th>
 					<th scope="col">Nombre</th>
 					<th scope="col">Estado</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					
+					 
+					<th scope="col" sec:authorize="hasAnyRole('ROLE_ADMIN')">Editar</th>
+					<th scope="col" sec:authorize="hasAnyRole('ROLE_ADMIN')">Eliminar</th>
 					
 					
 				</tr>
@@ -37,17 +49,20 @@
 					</td>
 					<!--<td th:text="${autor.alta}"></td>-->
 					
+					<section sec:authorize="hasAnyRole('ROLE_ADMIN')" >
 					<td>
 					<!--<a th:href="@{/autor/editar/__${autor.id}__}"><i class="fa fa-arrow-up">Alta</i></a> 
 					<a th:href="@{/autor/eliminar/__${autor.id}__}"><i class="fa fa-ban">Baja</i></a> 
 					
 					Pone iconos 
 					-->
-					<a th:href="@{/autor/editar/__${autor.id}__}" class="btn btn-info my-2">Editar </a>
+					<a  th:href="@{/libreria/autor/editar/__${autor.id}__}" class="btn btn-info my-2" sec:authorize="hasAnyRole('ROLE_ADMIN')">Editar </a>
 					</td>
 					<td>
-					<a th:href="@{/autor/eliminar/__${autor.id}__}" class="btn btn-danger my-2">Eliminar </a>
+					<a  th:href="@{/libreria/autor/eliminar/__${autor.id}__}" class="btn btn-danger my-2" sec:authorize="hasAnyRole('ROLE_ADMIN')">Eliminar </a>
 					</td>
+					
+					</section>
 				</tr>
 
 			</tbody>
@@ -56,7 +71,7 @@
       <section class="py-5 text-center container">
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
-					<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+					<a th:href="@{/libreria/}" class="btn btn-primary my-2">Volver</a>
 					
 				</div>
 			</div>

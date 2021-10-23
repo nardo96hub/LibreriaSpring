@@ -1,10 +1,16 @@
 package egg.web.libreria.configuraciones;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import egg.web.libreria.servicios.ServicioUsuario;
 
 
 //Esta configuracion sirve para que no aparesca login si todo estuviera completo
@@ -12,12 +18,24 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class ConfSeg extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	//@Qualifier("usuarioService")
+	public ServicioUsuario usuarioService;
+	
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(usuarioService).passwordEncoder(new BCryptPasswordEncoder());
+	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-				.antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll()
-				.and().csrf()
-					.disable();
+		http.authorizeRequests()
+
+				.antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll().and().formLogin().loginPage("/login")
+				.loginProcessingUrl("/logincheck").usernameParameter("user").passwordParameter("pass")
+				.defaultSuccessUrl("/libreria/").failureUrl("/login?error=error").permitAll().and().logout().logoutUrl("/logout")
+				.logoutSuccessUrl("/login").permitAll().and().csrf().disable();
 	}
 }

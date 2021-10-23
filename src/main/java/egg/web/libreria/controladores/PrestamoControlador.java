@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,8 @@ import egg.web.libreria.entidades.Prestamo;
 import egg.web.libreria.servicios.ServicioPrestamo;
 
 @Controller
-@RequestMapping("/prestamo")
+@PreAuthorize("isAuthenticated()")
+@RequestMapping("/libreria/prestamo")
 public class PrestamoControlador {
 
 	@Autowired
@@ -33,12 +34,13 @@ public class PrestamoControlador {
 		return "listarPrestamo";
 	}
 
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/crearPrestamo")
 	public String s() {
 		return "crearPrestamo";
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("crearPrestamo")
 	public String crearPrestamo(@RequestParam String pre, @RequestParam String dev, @RequestParam String titL,
 			@RequestParam Long dniC) {
@@ -67,14 +69,14 @@ public class PrestamoControlador {
 		return "redirect:/";
 
 	}
-
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar/{id}")
 	public String e(@PathVariable Long id) {
 		serPrestamo.eliminarPrestamo(id);
 
 		return "redirect:/prestamo/lista";
 	}
-
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/editar/{id}")
 	public String ed(ModelMap m, @PathVariable Long id) {
 		Prestamo p = serPrestamo.obtenerPrestamo(id);
@@ -82,24 +84,24 @@ public class PrestamoControlador {
 		return "editarPrestamo";
 
 	}
-
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/editar/{id}")
-	public String edi(@PathVariable Long id, @RequestParam String pre, @RequestParam String dev, @RequestParam String titL,
-			@RequestParam Long dniC) {
+	public String edi(@PathVariable Long id, @RequestParam String pre, @RequestParam String dev,
+			@RequestParam String titL, @RequestParam Long dniC) {
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		Date fechap, fechad;
+		
 		try {
 			fechap = formato.parse(pre);
 			fechad = formato.parse(dev);
 			serPrestamo.editarPrestamo(id, fechap, fechad, titL, dniC);
-		return "redirect:/prestamo/lista";
+			return "redirect:/prestamo/lista";
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "redirect:/";
 		}
-		
-		
+
 	}
 
 }

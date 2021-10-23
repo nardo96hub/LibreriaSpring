@@ -26,8 +26,8 @@
                     <th scope="col">Estado</th>
                     <th scope="col">Libro</th>
                     <th scope="col">Cliente</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
+                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 <!--
                     <th scope="col" >id Autor</th>
                     <th scope="col">Nombre Autor</th>
@@ -81,11 +81,11 @@
 
                     <td>
 
-                        <a th:href="@{/prestamo/editar/__${prestamo.id}__}"><i class="far fa-edit" style="color: gold;"></i>
+                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/libreria/prestamo/editar/__${prestamo.id}__}"><i class="far fa-edit" style="color: gold;"></i>
                         </a>
                     </td>
                     <td>
-                        <a th:href="@{/prestamo/eliminar/__${prestamo.id}__}"><i class="fas fa-trash" style="color: red;">
+                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/libreria/prestamo/eliminar/__${prestamo.id}__}"><i class="fas fa-trash" style="color: red;">
                             </i></a>
                     </td>
                 </tr>
@@ -96,7 +96,7 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+                <a th:href="@{/libreria/}" class="btn btn-primary my-2">Volver</a>
 
             </div>
         </div>

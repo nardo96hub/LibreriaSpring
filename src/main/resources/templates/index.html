@@ -1,116 +1,163 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Libreria</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-            <a href="" class="navbar-brand text-white">Libreria</a>
-            <button class="navbar-toggler" data-target="#menu" data-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav mr-auto">
-                    <li class="navbar-item dropdown">
-                        <a href="#"class="nav-link dropdown-toggle active " data-toggle="dropdown" data-target="desplegable">Autor</a>
-                        <div class="dropdown-menu bg-primary">
-                            <a href="/autor/registro" class="dropdown-item text-warning">Crear Autores</a>
-                            <a href="/autor/lista" class="dropdown-item  text-warning">Mostrar Autores Activos</a>
-                        </div>
-                  <!--  <p><a href="/autor/lista">Autores(verCristian)</a></p>
-    <p><a href="/autor/registro">Autores</a></p>
---><!--<p><a href="/registro">Autores(verCristian)</a></p>-->
-                    
-                    </li>
-                    <li class="navbar-item active">
-                        <a href="#"class="nav-link dropdown-toggle active " data-toggle="dropdown" data-target="desplegable">Editorial</a>
-                        <div class="dropdown-menu bg-secondary">
-                            <a href="/editorial/cargaedi" class="dropdown-item text-light">Crear Editorial</a>
-                            <a href="/editorial/lista" class="dropdown-item  text-light">Mostrar Editoriales Activas</a>
-                        </div>
-                    
-                    </li>
-                    <li class="navbar-item active">
-                        <a href="#"class="nav-link dropdown-toggle active " data-toggle="dropdown" data-target="desplegable">Libro</a>
-                        <div class="dropdown-menu bg-warning">
-                            <a href="/libro/cargalibro" class="dropdown-item text-info">Crear Libro</a>
-                            <a href="/libro/lista" class="dropdown-item  text-info">Mostrar Libros Activos</a>
-                        </div>
-                    
-                    </li>
-                     <li class="navbar-item active">
-                        <a href="#"class="nav-link dropdown-toggle active " data-toggle="dropdown" data-target="desplegable">Cliente</a>
-                        <div class="dropdown-menu bg-danger text-info">
-                            <a href="/cliente/crearCliente" class="dropdown-item text-info">Crear Cliente</a>
-                            <a href="/cliente/lista" class="dropdown-item  text-info">Mostrar Cliente Activos</a>
-                        </div>
-                    
-                    </li>
-                    <li class="navbar-item active">
-                      <a href="#"class="nav-link dropdown-toggle active " data-toggle="dropdown" data-target="desplegable">Prestamo</a>
-                      <div class="dropdown-menu bg-danger text-info">
-                          <a href="/prestamo/crearPrestamo" class="dropdown-item text-info">Crear Prestamos</a>
-                          <a href="/prestamo/lista" class="dropdown-item  text-info">Mostrar Prestamos Activos</a>
-                      </div>
-                  
-                  </li>
-                    <li class="navbar-item active"><a href="/mostrartodo"class="nav-link">Mostrar Toda la Informacion</a></li>
-                </ul>
 
-            </div>
+<head>
+	<title>Libreria</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-        </nav>
-        <div style="background-image:url(https://www.recreoviral.com/wp-content/uploads/2017/01/preguntas-bella-bestia3.jpg) ; height: 500px;">
-        </div >
+<body>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+			<a href="" class="navbar-brand text-white">Libreria</a>
+			<button class="navbar-toggler" data-target="#menu" data-toggle="collapse" type="button">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="navbar-nav mr-auto">
+					<li class="navbar-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
+							data-target="desplegable">Autor</a>
+						<div class="dropdown-menu bg-primary">
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" href="/libreria/autor/registro" class="dropdown-item text-warning">Crear Autores</a>
+							<a href="/libreria/autor/lista" class="dropdown-item  text-warning">Mostrar Autores
+								Activos</a>
+						</div>
 
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-info">
-                <a class="navbar-brand" href="#">Contacto:</a>
-                <button class="navbar-toggler" data-target="#menu1" data-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="menu1">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                      <a class="nav-link" href="https://www.facebook.com/"><i class="fab fa-facebook-square">  </i> </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="https://www.gmail.com/"><i class="fab fa-google"></i></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link " href="https://www.twitter.com/"><i class="fab fa-twitter-square"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="https://www.github.com/"><i class="fab fa-github-square"></i></a>
-                      </li>
-                  </ul>
-                </div>
-              </nav>
-           
-        </div>
-    </div>
-    
-<!--
+
+					</li>
+					<li class="navbar-item active">
+						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
+							data-target="desplegable">Editorial</a>
+						<div class="dropdown-menu bg-secondary">
+							<a href="/libreria/editorial/cargaedi" class="dropdown-item text-light">Crear Editorial</a>
+							<a href="/libreria/editorial/lista" class="dropdown-item  text-light">Mostrar Editoriales
+								Activas</a>
+						</div>
+
+					</li>
+					<li class="navbar-item active">
+						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
+							data-target="desplegable">Libro</a>
+						<div class="dropdown-menu bg-warning">
+							<a href="/libreria/libro/cargalibro" class="dropdown-item text-info">Crear Libro</a>
+							<a href="/libreria/libro/lista" class="dropdown-item  text-info">Mostrar Libros Activos</a>
+						</div>
+
+					</li>
+					<li class="navbar-item active">
+						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
+							data-target="desplegable">Cliente</a>
+						<div class="dropdown-menu bg-danger text-info">
+							<a href="/libreria/cliente/crearCliente" class="dropdown-item text-info">Crear Cliente</a>
+							<a href="/libreria/cliente/lista" class="dropdown-item  text-info">Mostrar Cliente
+								Activos</a>
+						</div>
+
+					</li>
+					<li class="navbar-item active">
+						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
+							data-target="desplegable">Prestamo</a>
+						<div class="dropdown-menu bg-danger text-info">
+							<a href="/libreria/prestamo/crearPrestamo" class="dropdown-item text-info">Crear
+								Prestamos</a>
+							<a href="/libreria/prestamo/lista" class="dropdown-item  text-info">Mostrar Prestamos
+								Activos</a>
+						</div>
+
+					</li>
+					<li class="navbar-item active"><a href="/libreria/mostrartodo" class="nav-link">Mostrar Toda la
+							Informacion</a></li>
+
+					<li>
+						<div class="navbar-item active d-flex align-items-right justify-content-right"
+							th:if="${session.usuariosession!=null}">
+							 <!--<p class="nav-link mt-3" th:value="${session.usuariosession.NyA"></p> -->
+							<a th:href="@{/logout}" class="btn btn-primary mt-2">Logout</a>
+						</div>
+
+					</li>
+
+				</ul>
+
+			</div>
+
+		</nav>
+
+
+		<!-- <div th:if="${session.usuariosession==null">
+          
+          
+          
+          
+          <a href="@{/login" class="btn btn-outline-primary mt-2">Login</a>
+          <a href="@{/usuario/registrar" class="btn btn-outline-primary mt-2">Registrarse</a>
+
+
+        </div>-->
+
+
+		<div
+			style="background-image:url(https://www.recreoviral.com/wp-content/uploads/2017/01/preguntas-bella-bestia3.jpg) ; height: 500px;">
+		</div>
+
+		<div>
+			<nav class="navbar navbar-expand-lg navbar-light bg-info">
+				<a class="navbar-brand" href="#">Contacto:</a>
+				<button class="navbar-toggler" data-target="#menu1" data-toggle="collapse" type="button">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="menu1">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item ">
+							<a class="nav-link" href="https://www.facebook.com/"><i class="fab fa-facebook-square"> </i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.gmail.com/"><i class="fab fa-google"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link " href="https://www.twitter.com/"><i
+									class="fab fa-twitter-square"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link " href="https://www.github.com/"><i class="fab fa-github-square"></i></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+		</div>
+	</div>
+
+	<!--
     <h1>Libreria</h1>
 	
     <p><a href="/autor/lista">Autores(verCristian)</a></p>
     <p><a href="/autor/registro">Autores</a></p>
---><!--<p><a href="/registro">Autores(verCristian)</a></p>-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+-->
+	<!--<p><a href="/registro">Autores(verCristian)</a></p>-->
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+
 </html>
