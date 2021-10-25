@@ -37,7 +37,7 @@
 						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
 							data-target="desplegable">Editorial</a>
 						<div class="dropdown-menu bg-secondary">
-							<a href="/libreria/editorial/cargaedi" class="dropdown-item text-light">Crear Editorial</a>
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" href="/libreria/editorial/cargaedi" class="dropdown-item text-light">Crear Editorial</a>
 							<a href="/libreria/editorial/lista" class="dropdown-item  text-light">Mostrar Editoriales
 								Activas</a>
 						</div>
@@ -47,7 +47,7 @@
 						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
 							data-target="desplegable">Libro</a>
 						<div class="dropdown-menu bg-warning">
-							<a href="/libreria/libro/cargalibro" class="dropdown-item text-info">Crear Libro</a>
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" href="/libreria/libro/cargalibro" class="dropdown-item text-info">Crear Libro</a>
 							<a href="/libreria/libro/lista" class="dropdown-item  text-info">Mostrar Libros Activos</a>
 						</div>
 
@@ -56,7 +56,7 @@
 						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
 							data-target="desplegable">Cliente</a>
 						<div class="dropdown-menu bg-danger text-info">
-							<a href="/libreria/cliente/crearCliente" class="dropdown-item text-info">Crear Cliente</a>
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" href="/libreria/cliente/crearCliente" class="dropdown-item text-info">Crear Cliente</a>
 							<a href="/libreria/cliente/lista" class="dropdown-item  text-info">Mostrar Cliente
 								Activos</a>
 						</div>
@@ -66,7 +66,7 @@
 						<a href="#" class="nav-link dropdown-toggle active " data-toggle="dropdown"
 							data-target="desplegable">Prestamo</a>
 						<div class="dropdown-menu bg-danger text-info">
-							<a href="/libreria/prestamo/crearPrestamo" class="dropdown-item text-info">Crear
+							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" href="/libreria/prestamo/crearPrestamo" class="dropdown-item text-info">Crear
 								Prestamos</a>
 							<a href="/libreria/prestamo/lista" class="dropdown-item  text-info">Mostrar Prestamos
 								Activos</a>

@@ -54,6 +54,7 @@ public class EditorialControlador {
 	}
 	
 	//Controlador para eliminar
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable String id) {
 		try {
@@ -67,6 +68,7 @@ public class EditorialControlador {
 	}
 	
 	//Controladores editar
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@GetMapping("/editar/{id}")
 	public String editar(ModelMap mod,@PathVariable String id) {
 		
@@ -81,7 +83,7 @@ public class EditorialControlador {
 		}
 	
 	}
-	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping("/editar/{id}")
 	public String editar(@PathVariable String id,@RequestParam String nombre) {
 		try {

@@ -39,8 +39,8 @@
                     <th scope="col">id Editorial</th>
                     <th scope="col">Nombre Editorial</th>
                     <th scope="col">Estado Editorial</th>
-                    <th  scope="col">Editar</th>
-                    <th  scope="col">Eliminar</th>
+                    <th sec:authorize="hasAnyRole('ROLE_ADMIN')" scope="col">Editar</th>
+                    <th sec:authorize="hasAnyRole('ROLE_ADMIN')"  scope="col">Eliminar</th>
 
 
                 </tr>
@@ -78,13 +78,13 @@
 
 
 
-                    <td>
+                    <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
 
-                        <a   th:href="@{/libreria/libro/editar/__${libro.id}__}"><i class="far fa-edit" style="color: gold;"></i>
+                        <a sec:authorize="hasAnyRole('ROLE_ADMIN')"  th:href="@{/libreria/libro/editar/__${libro.id}__}"><i class="far fa-edit" style="color: gold;"></i>
                         </a>
                     </td>
-                    <td>
-                        <a  th:href="@{/libreria/libro/eliminar/__${libro.id}__}"><i class="fas fa-trash" style="color: red;">
+                    <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                        <a sec:authorize="hasAnyRole('ROLE_ADMIN')"  th:href="@{/libreria/libro/eliminar/__${libro.id}__}"><i class="fas fa-trash" style="color: red;">
                             </i></a>
                     </td>
                 </tr>

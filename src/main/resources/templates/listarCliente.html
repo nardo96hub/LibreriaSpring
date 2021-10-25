@@ -30,8 +30,8 @@
 					<th scope="col">Dni</th>
 					<th scope="col">Telefono</th>
 					<th scope="col">Estado Libro</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					<th sec:authorize="hasAnyRole('ROLE_ADMIN')" scope="col">Editar</th>
+					<th sec:authorize="hasAnyRole('ROLE_ADMIN')" scope="col">Eliminar</th>
 
 				</tr>
 			</thead>
@@ -54,14 +54,14 @@
 
 
 
-					<td>
+					<td sec:authorize="hasAnyRole('ROLE_ADMIN')">
 
-						<a th:href="@{/libreria/cliente/editar/__${cliente.id}__}"><i class="far fa-edit"
+						<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/libreria/cliente/editar/__${cliente.id}__}"><i class="far fa-edit"
 								style="color: rgb(64, 0, 0);"></i>
 						</a>
 					</td>
-					<td>
-						<a th:href="@{/libreria/cliente/eliminar/__${cliente.id}__}"><i class="fas fa-trash"
+					<td sec:authorize="hasAnyRole('ROLE_ADMIN')">
+						<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/libreria/cliente/eliminar/__${cliente.id}__}"><i class="fas fa-trash"
 								style="color: rgb(0, 64, 0);"></i></a>
 					</td>
 					

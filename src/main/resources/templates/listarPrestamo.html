@@ -26,8 +26,8 @@
                     <th scope="col">Estado</th>
                     <th scope="col">Libro</th>
                     <th scope="col">Cliente</th>
-                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
-                    <th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+                    <th scope="col" sec:authorize="hasAnyRole('ROLE_ADMIN')">Editar</th>
+                    <th scope="col" sec:authorize="hasAnyRole('ROLE_ADMIN')">Eliminar</th>
 <!--
                     <th scope="col" >id Autor</th>
                     <th scope="col">Nombre Autor</th>
@@ -79,13 +79,13 @@
 
 -->
 
-                    <td>
+                    <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
 
-                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/libreria/prestamo/editar/__${prestamo.id}__}"><i class="far fa-edit" style="color: gold;"></i>
+                        <a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/libreria/prestamo/editar/__${prestamo.id}__}"><i class="far fa-edit" style="color: gold;"></i>
                         </a>
                     </td>
-                    <td>
-                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/libreria/prestamo/eliminar/__${prestamo.id}__}"><i class="fas fa-trash" style="color: red;">
+                    <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                        <a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/libreria/prestamo/eliminar/__${prestamo.id}__}"><i class="fas fa-trash" style="color: red;">
                             </i></a>
                     </td>
                 </tr>

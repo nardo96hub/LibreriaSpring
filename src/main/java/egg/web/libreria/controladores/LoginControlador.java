@@ -17,11 +17,17 @@ public class LoginControlador {
 	}
 	
 	@GetMapping("/login")
-	public String l(@RequestParam(required=false) String error,ModelMap mod) {
+	public String l(@RequestParam(required=false) String error,ModelMap mod,@RequestParam(required=false) String username,@RequestParam(required=false)String logout) {
 		if(error!=null) {
-			mod.put("error", "Documento o clave incorrecta");
+			//mod.put("error", "Documento o clave incorrecta");
+			mod.addAttribute("error","El usuario ingresado o contrasena son incorrectos");
 			
 		}
+		if(username!=null) {
+			mod.addAttribute("username",username);
+		}
+		
+		
 		return "redirect:/";
 	}
 	
